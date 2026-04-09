@@ -12,10 +12,13 @@ public class Avaliacoesmodel {
     private Long id;
 
     private String nome;
+
+    @Column(columnDefinition = "TEXT")
     private String comentario;
+
     private int nota;
 
-    @Column(updatable = false)
+    @Column(columnDefinition = "DATETIME")
     private LocalDateTime data;
 
     public Avaliacoesmodel() {
@@ -69,9 +72,10 @@ public class Avaliacoesmodel {
         this.data = data;
     }
 
-    // Preenche a data automaticamente ao criar o registro
     @PrePersist
     public void prePersist() {
-        this.data = LocalDateTime.now();
+        if (this.data == null) {
+            this.data = LocalDateTime.now();
+        }
     }
 }
