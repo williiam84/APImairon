@@ -6,13 +6,18 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "avaliacoes")
 public class Avaliacoesmodel {
+
     @Id
-            @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
     private String comentario;
     private int nota;
+
+    @Column(updatable = false)
     private LocalDateTime data;
+
     public Avaliacoesmodel() {
     }
 
@@ -43,16 +48,30 @@ public class Avaliacoesmodel {
     public String getComentario() {
         return comentario;
     }
+
     public void setComentario(String comentario) {
         this.comentario = comentario;
     }
+
     public int getNota() {
         return nota;
     }
+
     public void setNota(int nota) {
         this.nota = nota;
     }
+
     public LocalDateTime getData() {
         return data;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
+    }
+
+    // Preenche a data automaticamente ao criar o registro
+    @PrePersist
+    public void prePersist() {
+        this.data = LocalDateTime.now();
     }
 }
