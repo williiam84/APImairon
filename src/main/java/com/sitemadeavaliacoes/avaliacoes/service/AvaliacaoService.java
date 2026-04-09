@@ -7,34 +7,27 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-
 public class AvaliacaoService {
+
     private final AvaiacoesReposiory avaiacoesReposiory;
+
     public AvaliacaoService(AvaiacoesReposiory avaiacoesReposiory) {
         this.avaiacoesReposiory = avaiacoesReposiory;
     }
 
-    //CADASTRAR AVALIAÇÃO
-    public Avaliacoesmodel CadastrarAvaliação(Avaliacoesmodel avaliacoesmodel) {
-        return avaiacoesReposiory.save(avaliacoesmodel);
-    }
-    //BUSCAR POR ID
-    public List<Avaliacoesmodel> buscarPorId(Long id){
-        return avaiacoesReposiory.findAll().stream()
-                .filter(a -> a.getId() == id)
-                .toList();
-    }
-    //SALVAR AVALIAÇÃO
     public Avaliacoesmodel salvarAvaliacao(Avaliacoesmodel avaliacoesmodel) {
         return avaiacoesReposiory.save(avaliacoesmodel);
     }
 
-    //DELETAR
-    public void DeletarAvaliacoesmodel(Long id){
-        avaiacoesReposiory.deleteById(id);
-    }
-    //LISTAR
-    public AvaiacoesReposiory Listaravaliacoes(){
+    public List<Avaliacoesmodel> Listaravaliacoes(){
         return avaiacoesReposiory.findAll();
+    }
+
+    public Avaliacoesmodel buscarPorId(Long id){
+        return avaiacoesReposiory.findById(id).orElse(null);
+    }
+
+    public void deletar(Long id){
+        avaiacoesReposiory.deleteById(id);
     }
 }
