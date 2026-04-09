@@ -35,6 +35,6 @@ public class AvaliacaoService {
     }
     //LISTAR
     public AvaiacoesReposiory Listaravaliacoes(){
-        return avaiacoesReposiory;
+        return avaiacoesReposiory.findAll();
     }
 }
