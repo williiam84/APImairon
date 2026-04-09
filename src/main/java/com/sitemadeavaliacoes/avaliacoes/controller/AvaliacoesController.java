@@ -17,9 +17,9 @@ public class AvaliacoesController {
         this.avaliacaoService = avaliacaoService;
     }
     @GetMapping("/avaliacoes")
-    public AvaiacoesReposiory getAvaliacoes(){
-        return avaliacaoService.Listaravaliacoes();
-    }
+public List<Avaliacoesmodel> getAvaliacoes(){
+    return avaliacaoService.Listaravaliacoes();
+}
     @PostMapping("/avaliacoes")
     public Avaliacoesmodel Save(@RequestBody Avaliacoesmodel avaliacoesmodel){
         return avaliacaoService.CadastrarAvaliação(avaliacoesmodel);
